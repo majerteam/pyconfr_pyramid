@@ -1,0 +1,32 @@
+/*
+ * File Name :
+ *
+ * Copyright (C) 2012 Gaston TJEBBES g.t@majerti.fr
+ * Company : Majerti ( http://www.majerti.fr )
+ *
+ * This software is distributed under GPLV3
+ * License: http://www.gnu.org/licenses/gpl-3.0.txt
+ *
+ */
+h1{
+  font-size: 1.8em;
+  margin-top: 20px;
+}
+h2{
+  bottom: 0px;
+  position: relative;
+}
+#grimper-en-haut-de-la-pyramid {
+  text-align:center;
+}
+#grimper-en-haut-de-la-pyramid p{
+  text-align:center;
+}
+#grimper-en-haut-de-la-pyramid img:first-of-type{
+  width: 80%;
+}
+#grimper-en-haut-de-la-pyramid h1{
+  font-size: 1.5em;
+  text-align:center;
+  margin-bottom: 50px;
+}
