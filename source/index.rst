@@ -54,7 +54,8 @@ Un problème
     :height: 500px
     :align: center
 
-.. nextslide::
+Mais ... finalement
+--------------------
 
 .. image:: _static/hammer.png
     :height: 500px
