@@ -200,6 +200,8 @@ Framework sans opinion
 
 .. image:: _static/nspp.png
 
+.. nextslide::
+
 Pyramid tente de vous laisser libre :
 
 * Dans la définition de la structure de votre application
