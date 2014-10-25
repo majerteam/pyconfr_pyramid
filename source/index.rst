@@ -26,8 +26,8 @@ Le choix du framework
         :width: 70%
         :align: center
 
-Premier pas
-============
+Le premier pas
+==============
 
 .. code-block:: console
 
@@ -77,7 +77,7 @@ Eh mais en fait, c'est du Python !!!
 Le minimum nécessaire
 =====================
 
-**Request => Code => Response**
+**Request → Code → Response**
 
 .. code-block:: python
 
@@ -150,12 +150,14 @@ Un moteur de templating ? Nous vous proposons :
 
 .. nextslide::
 
-Le système d'include de Pyramid et l'ajout de directive au Configurator vont
+Le système d'*include* de Pyramid et l'ajout de directive au Configurator vont
 permettre de créer facilement des extensions.
 
 
-Sans-opinion
-=============
+Framework sans opinion
+=======================
+
+.. image:: _static/nspp.png
 
 Pyramid tente de vous laisser libre :
 
@@ -202,7 +204,7 @@ Une directive de configuration pour définir la racine de l'arbre.
         def __getitem__(self, id):
             return User(
                 id=id,
-                name=u"Fraichement récupéré dans la base de données"
+                name=u"Fraîchement récupéré dans la base de données"
             )
 
     class MyRootFactory(dict):
