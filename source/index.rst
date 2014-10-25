@@ -14,11 +14,51 @@ gaston@majerti.fr
 Le choix du framework
 ======================
 
-* La reprise d'un projet existant
+Une problématique métier
+-------------------------
 
-* Peu de budget au départ
+.. image:: _static/pb_ideal.png
+    :height: 500px
+    :align: center
 
-* Un nouveau projet avec des ambitions à long terme
+.. nextslide::
+
+.. image:: _static/pb_reel.png
+    :height: 500px
+    :align: center
+
+Une problématique contextuelle
+-------------------------------
+
+.. image:: _static/contexte_ideal.png
+    :height: 500px
+    :align: center
+
+.. nextslide::
+
+.. image:: _static/contexte_reel.png
+    :height: 500px
+    :align: center
+
+Un problème
+-------------
+
+.. image:: _static/problem.png
+    :height: 500px
+    :align: center
+
+"Une" solution
+---------------
+
+.. image:: _static/solution.png
+    :height: 500px
+    :align: center
+
+.. nextslide::
+
+.. image:: _static/hammer.png
+    :height: 500px
+    :align: center
 
 .. slide::
 
