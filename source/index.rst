@@ -40,8 +40,8 @@ Une problématique contextuelle
     :height: 500px
     :align: center
 
-Un problème
--------------
+Un (des) problème(s)
+---------------------
 
 .. image:: _static/problem.png
     :height: 500px
@@ -61,10 +61,22 @@ Mais ... finalement
     :height: 500px
     :align: center
 
+.. nextslide::
+
+.. image:: _static/problem_soluce1.png
+    :height: 500px
+    :align: center
+
 .. slide::
 
     .. image:: _static/pyramid.png
         :width: 70%
+        :align: center
+
+.. slide::
+
+    .. image:: _static/problem_soluce2.png
+        :height: 500px
         :align: center
 
 Le premier pas
@@ -84,12 +96,6 @@ Le premier pas
 Eh mais en fait, c'est du Python !!!
 
 .. image:: _static/kiss.png
-
-.. note::
-
-    Ici on utilise le scaffold starter (on peut créer les siens), qui fournit un
-    projet avec une structure prédéfinie et notamment nous fournit un package
-    python pip installable.
 
 .. nextslide::
 
@@ -212,13 +218,6 @@ votre besoin, et pas l'inverse.
 Cependant, ces nombreuses possibilités peuvent être un frein, surtout pour un
 débutant.
 
-.. note::
-
-    Je le déconseille aux débutants pressés
-    Le développement initial d'une application peut être long (plus long qu'avec
-    des outils plus structurants), néanmoins ce temps est largement compensé par
-    le fait que votre code est structuré pour votre besoin.
-
 URL Dispatch
 ============
 
@@ -257,10 +256,6 @@ Une directive de configuration pour définir la racine de l'arbre.
 
     config.set_root_factory(MyRootFactory)
 
-.. note::
-
-    UserQueryFactory implémente une méthode __getitem__ (comme le dictionnaire
-    MyRootFactory).
 
 URL Traversal : les vues
 -------------------------
@@ -284,19 +279,8 @@ Les vues sont désormais rattachées à un type de contexte et éventuellement �
 * MyRootFactory(request)[**users**][**15**] => My *User*
 * My *User* + "**json**" => json_view callable
 
-.. note::
-
-    Le traversal lookup a parcouru l'arbre de traversal avec les segments de l'url
-    **/users/15/json/dontcare**, il nous a renvoyé une ressource User et un nom
-    "json".
-
-One Page App en Pyramid
-========================
-
-Une seule page html, plein de js et une Api Rest
-
-* Générer une Api Rest avec Cornice : `http://cornice.readthedocs.org/en/latest/`
-* MVC côté client avec Backbone-Marionette
+Quelques références
+====================
 
 Application SQL classique
 ==========================
@@ -308,6 +292,14 @@ Application SQL classique
 * pyramid_layout
 * colanderalchemy : générer des schémas colander depuis des modèles SQLAlchemy
 
+One Page App en Pyramid
+========================
+
+Une seule page html, plein de js et une Api Rest
+
+* Générer une Api Rest avec Cornice : `http://cornice.readthedocs.org/en/latest/`
+* MVC côté client avec Backbone-Marionette
+
 .. slide::
 
     .. figure:: _static/pyramid_top.png
@@ -316,4 +308,5 @@ Application SQL classique
 Merci
 ======
 
-?
+Le lien vers la conf :
+https://github.com/majerteam/pyconfr_pyramid
