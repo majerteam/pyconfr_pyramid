@@ -197,9 +197,11 @@ Un moteur de templating ? Nous vous proposons :
 
 .. nextslide::
 
-Le système d'*include* de Pyramid et l'ajout de directive au Configurator vont
-permettre de créer facilement des extensions.
+* Le système d'*include* de Pyramid
+* Les tweens
+* L'ajout de directive au Configurator
 
+vont permettre de créer facilement des extensions.
 
 Framework sans opinion
 =======================
@@ -279,26 +281,56 @@ Les vues sont désormais rattachées à un type de contexte et éventuellement �
 * MyRootFactory(request)[**users**][**15**] => My *User*
 * My *User* + "**json**" => json_view callable
 
+Authentification/Acls
+======================
+
+Deux modules :
+
+* pyramid.authentication
+* pyramid.authorization
+
+ACLAuthorizationPolicy
+=======================
+
+Combiné au traversal, permet une gestion dynamique des permissions
+
+.. code-block:: python
+
+    class User(dict):
+        def __acl__(self):
+            acls = [
+            (Allow, "group:admin", ALL_PERMISSIONS,),
+            ]
+            acls.append((Allow, Authenticated, ('edit')))
+
+            acls.append((Allow, self['name'], ('view')))
+            return acls
+
+
+.. code-block:: python
+
+    config.add_view(edit_user, context=User, name='json',
+                    renderer='json', permission='edit')
+
+
+Autres
+=======
+
+* Traduire
+* Journaliser
+* Tester
+
 Quelques références
 ====================
 
-Application SQL classique
-==========================
-
-* SQLAlchemy : l'ORM
-* alembic : la migration de base de données
-* sqlautocode : générer les schémas depuis une base existante
-* pyramid_deform (deform/colander) : formulaires
+* SQLAlchemy
+* alembic
+* cornice
+* sqlautocode
+* pyramid_deform (deform/colander)
+* colanderalchemy
 * pyramid_layout
-* colanderalchemy : générer des schémas colander depuis des modèles SQLAlchemy
-
-One Page App en Pyramid
-========================
-
-Une seule page html, plein de js et une Api Rest
-
-* Générer une Api Rest avec Cornice : `http://cornice.readthedocs.org/en/latest/`
-* MVC côté client avec Backbone-Marionette
+...
 
 .. slide::
 
