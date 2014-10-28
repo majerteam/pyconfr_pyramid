@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Grimper en haut de la Pyramid &mdash; documentation Grimper en haut de la Pyramid 2014.10.20</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/styles.css" type="text/css" />
+    <link rel="stylesheet" href="_static/slides.css" type="text/css" />
+    
+    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    
+
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2014.10.20',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="_static/common.js"></script>
+    <script type="text/javascript" src="_static/slides.js"></script>
+    <script type="text/javascript" src="_static/sync.js"></script>
+    <script type="text/javascript" src="_static/controller.js"></script>
+    <script type="text/javascript" src="_static/init.js"></script>
+    
+    <link rel="top" title="documentation Grimper en haut de la Pyramid 2014.10.20" href="#" /> 
+  </head>
+  <body>
+
+<section
+   id="slide_container"
+   class='slides layout-regular'>
+
+
+  <article class="slide level-1" id="grimper-en-haut-de-la-pyramid">
+<h1>Grimper en haut de la Pyramid</h1>
+<p>Gaston Tjebbes</p>
+<p><a class="reference external" href="mailto:gaston&#37;&#52;&#48;majerti&#46;fr">gaston<span>&#64;</span>majerti<span>&#46;</span>fr</a></p>
+<img alt="_images/pyramid_guat.png" src="_images/pyramid_guat.png" />
+
+</article>
+<article class="slide level-1" id="le-choix-du-framework">
+<h1>Le choix du framework</h1>
+
+</article>
+<article class="slide level-2" id="une-problematique-metier">
+<h2>Une problématique métier</h2>
+<a class="reference internal image-reference" href="_images/pb_ideal.png"><img alt="_images/pb_ideal.png" class="align-center" src="_images/pb_ideal.png" style="height: 500px;" /></a>
+
+</article>
+<article class="slide level-2" id="id1">
+<h2>Une problématique métier</h2>
+<a class="reference internal image-reference" href="_images/pb_reel.png"><img alt="_images/pb_reel.png" class="align-center" src="_images/pb_reel.png" style="height: 500px;" /></a>
+
+</article>
+<article class="slide level-2" id="une-problematique-contextuelle">
+<h2>Une problématique contextuelle</h2>
+<a class="reference internal image-reference" href="_images/contexte_ideal.png"><img alt="_images/contexte_ideal.png" class="align-center" src="_images/contexte_ideal.png" style="height: 500px;" /></a>
+
+</article>
+<article class="slide level-2" id="id2">
+<h2>Une problématique contextuelle</h2>
+<a class="reference internal image-reference" href="_images/contexte_reel.png"><img alt="_images/contexte_reel.png" class="align-center" src="_images/contexte_reel.png" style="height: 500px;" /></a>
+
+</article>
+<article class="slide level-2" id="un-des-probleme-s">
+<h2>Un (des) problème(s)</h2>
+<a class="reference internal image-reference" href="_images/problem.png"><img alt="_images/problem.png" class="align-center" src="_images/problem.png" style="height: 500px;" /></a>
+
+</article>
+<article class="slide level-2" id="une-solution">
+<h2>&quot;Une&quot; solution</h2>
+<a class="reference internal image-reference" href="_images/solution.png"><img alt="_images/solution.png" class="align-center" src="_images/solution.png" style="height: 500px;" /></a>
+
+</article>
+<article class="slide level-2" id="mais-finalement">
+<h2>Mais ... finalement</h2>
+<a class="reference internal image-reference" href="_images/hammer.png"><img alt="_images/hammer.png" class="align-center" src="_images/hammer.png" style="height: 500px;" /></a>
+
+</article>
+<article class="slide level-2" id="id3">
+<h2>Mais ... finalement</h2>
+<a class="reference internal image-reference" href="_images/problem_soluce1.png"><img alt="_images/problem_soluce1.png" class="align-center" src="_images/problem_soluce1.png" style="height: 500px;" /></a>
+
+</article>
+<article class="admonition- slide level-2">
+<a class="reference internal image-reference" href="_images/pyramid.png"><img alt="_images/pyramid.png" class="align-center" src="_images/pyramid.png" style="width: 70%;" /></a>
+
+</article>
+<article class="admonition- slide level-2">
+<a class="reference internal image-reference" href="_images/problem_soluce2.png"><img alt="_images/problem_soluce2.png" class="align-center" src="_images/problem_soluce2.png" style="height: 500px;" /></a>
+
+</article>
+<article class="slide level-1" id="le-premier-pas">
+<h1>Le premier pas</h1>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> mkvirtualenv pyramid_test
+<span class="gp">$</span> pip install pyramid
+<span class="gp">$</span> pcreate -s starter myproject
+<span class="gp">$</span> <span class="nb">cd </span>myproject
+<span class="gp">$</span> python setup.py develop
+<span class="gp">$</span> pserve development.ini
+<span class="go">Starting server in PID 3248.</span>
+<span class="go">serving on http://0.0.0.0:6543</span>
+</pre></div>
+</div>
+<p>Eh mais en fait, c'est du Python !!!</p>
+<img alt="_images/kiss.png" src="_images/kiss.png" />
+
+</article>
+<article class="slide level-1" id="id4">
+<h1>Le premier pas</h1>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> tree
+<span class="go">├── CHANGES.txt</span>
+<span class="go">├── development.ini</span>
+<span class="go">├── MANIFEST.in</span>
+<span class="go">├── myproject</span>
+<span class="go">│   ├── __init__.py</span>
+<span class="go">│   ├── static</span>
+<span class="go">│   │   ├── pyramid-16x16.png</span>
+<span class="go">│   │   ├── pyramid.png</span>
+<span class="go">│   │   ├── theme.css</span>
+<span class="go">│   │   └── theme.min.css</span>
+<span class="go">│   ├── templates</span>
+<span class="go">│   │   └── mytemplate.pt</span>
+<span class="go">│   ├── tests.py</span>
+<span class="go">│   ├── views.py</span>
+<span class="go">├── production.ini</span>
+<span class="go">├── README.txt</span>
+<span class="go">└── setup.py</span>
+</pre></div>
+</div>
+
+</article>
+<article class="slide level-1" id="le-minimum-necessaire">
+<h1>Le minimum nécessaire</h1>
+<p><strong>Request → Code → Response</strong></p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">main</span><span class="p">(</span><span class="n">global_config</span><span class="p">,</span> <span class="o">**</span><span class="n">settings</span><span class="p">):</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">Configurator</span><span class="p">(</span><span class="n">settings</span><span class="o">=</span><span class="n">settings</span><span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="s">&#39;pyramid_chameleon&#39;</span><span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">add_static_view</span><span class="p">(</span><span class="s">&#39;static&#39;</span><span class="p">,</span> <span class="s">&#39;static&#39;</span><span class="p">,</span> <span class="n">cache_max_age</span><span class="o">=</span><span class="mi">3600</span><span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">add_route</span><span class="p">(</span><span class="s">&#39;home&#39;</span><span class="p">,</span> <span class="s">&#39;/&#39;</span><span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">scan</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">config</span><span class="o">.</span><span class="n">make_wsgi_app</span><span class="p">()</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@view_config</span><span class="p">(</span><span class="n">route_name</span><span class="o">=</span><span class="s">&#39;home&#39;</span><span class="p">,</span> <span class="n">renderer</span><span class="o">=</span><span class="s">&#39;templates/mytemplate.pt&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">my_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s">&#39;project&#39;</span><span class="p">:</span> <span class="s">&#39;myproject&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+
+</article>
+<article class="slide level-1" id="le-view-lookup">
+<h1>Le view lookup</h1>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@view_config</span><span class="p">(</span><span class="n">route_name</span><span class="o">=</span><span class="s">&#39;home&#39;</span><span class="p">,</span> <span class="n">renderer</span><span class="o">=</span><span class="s">&#39;json&#39;</span><span class="p">,</span> <span class="n">xhr</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="nd">@view_config</span><span class="p">(</span><span class="n">route_name</span><span class="o">=</span><span class="s">&#39;home&#39;</span><span class="p">,</span> <span class="n">renderer</span><span class="o">=</span><span class="s">&#39;templates/mytemplate.pt&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">my_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s">&#39;project&#39;</span><span class="p">:</span> <span class="s">&#39;myproject&#39;</span><span class="p">}</span>
+</pre></div>
+</div>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> wget -q -O - <span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>  http://127.0.0.1:6543/
+<span class="gp">$</span> wget --header<span class="o">=</span><span class="s2">&quot;X-Requested-With:XMLHttpRequest&quot;</span> -q -O - <span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span> <span class="se">\</span>
+<span class="go">http://127.0.0.1:6543/</span>
+</pre></div>
+</div>
+
+</article>
+<article class="slide level-1" id="les-vues-des-objets-python">
+<h1>Les vues, des objets Python</h1>
+<p>Ce sont :</p>
+<ul class="simple">
+<li>Des fonctions</li>
+<li>Des classes</li>
+<li>Des méthodes de classe</li>
+</ul>
+<p>Une seule contrainte dans les cas (2) et (3) :</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">my_request_object</span> <span class="o">=</span> <span class="n">request</span>
+</pre></div>
+</div>
+
+</article>
+<article class="slide level-1" id="extensible">
+<h1>Extensible</h1>
+<p>Un moteur de templating ? Nous vous proposons :</p>
+<ul class="simple">
+<li>pyramid_chameleon</li>
+<li><strong>pyramid_mako</strong></li>
+<li>pyramid_jinja2</li>
+</ul>
+<div class="highlight-console"><div class="highlight"><pre><span class="go">pip install pyramid_mako</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">config</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="s">&#39;pyramid_mako&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@view_config</span><span class="p">(</span><span class="n">route_name</span><span class="o">=</span><span class="s">&#39;home&#39;</span><span class="p">,</span> <span class="n">renderer</span><span class="o">=</span><span class="s">&#39;templates/home.mako&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+
+</article>
+<article class="slide level-1" id="id5">
+<h1>Extensible</h1>
+<ul class="simple">
+<li>Le système d'<em>include</em> de Pyramid</li>
+<li>Les tweens</li>
+<li>L'ajout de directive au Configurator</li>
+</ul>
+<p>vont permettre de créer facilement des extensions.</p>
+
+</article>
+<article class="slide level-1" id="framework-sans-opinion">
+<h1>Framework sans opinion</h1>
+<img alt="_images/nspp.png" src="_images/nspp.png" />
+
+</article>
+<article class="slide level-1" id="id6">
+<h1>Framework sans opinion</h1>
+<p>Pyramid tente de vous laisser libre :</p>
+<ul class="simple">
+<li>Dans la définition de la structure de votre application</li>
+<li>Dans le choix de vos outils (templating, persistence des données, formulaire ...)</li>
+</ul>
+<p>Ce qui vous rend autonome dans vos choix, et permet d'adapter votre outil à
+votre besoin, et pas l'inverse.
+Cependant, ces nombreuses possibilités peuvent être un frein, surtout pour un
+débutant.</p>
+
+</article>
+<article class="slide level-1" id="url-dispatch">
+<h1>URL Dispatch</h1>
+<img alt="_images/dispatch.png" src="_images/dispatch.png" />
+
+</article>
+<article class="slide level-1" id="url-traversal">
+<h1>URL Traversal</h1>
+<img alt="_images/traversal.png" src="_images/traversal.png" />
+
+</article>
+<article class="slide level-2" id="url-traversal-l-arbre">
+<h2>URL Traversal : l'arbre</h2>
+<img alt="_images/tree.png" src="_images/tree.png" />
+
+</article>
+<article class="slide level-2" id="id7">
+<h2>URL Traversal : l'arbre</h2>
+<p>Une directive de configuration pour définir la racine de l'arbre.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
+    <span class="k">pass</span>
+
+<span class="k">class</span> <span class="nc">UserQueryFactory</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="nb">id</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">User</span><span class="p">(</span>
+            <span class="nb">id</span><span class="o">=</span><span class="nb">id</span><span class="p">,</span>
+            <span class="n">name</span><span class="o">=</span><span class="s">u&quot;Fraîchement récupéré dans la base de données&quot;</span>
+        <span class="p">)</span>
+
+<span class="k">class</span> <span class="nc">MyRootFactory</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">request</span> <span class="o">=</span> <span class="n">request</span>
+        <span class="bp">self</span><span class="p">[</span><span class="s">&#39;users&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">UserQueryFactory</span><span class="p">()</span>
+
+<span class="n">config</span><span class="o">.</span><span class="n">set_root_factory</span><span class="p">(</span><span class="n">MyRootFactory</span><span class="p">)</span>
+</pre></div>
+</div>
+
+</article>
+<article class="slide level-2" id="url-traversal-les-vues">
+<h2>URL Traversal : les vues</h2>
+<p>Les vues sont désormais rattachées à un type de contexte et éventuellement à un nom.</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">def</span> <span class="nf">json_view</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s">&#39;user&#39;</span><span class="p">:</span> <span class="n">context</span><span class="p">}</span>
+
+<span class="n">config</span><span class="o">.</span><span class="n">add_view</span><span class="p">(</span><span class="n">json_view</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="n">User</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;json&#39;</span><span class="p">,</span>
+                <span class="n">renderer</span><span class="o">=</span><span class="s">&#39;json&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> wget -q -O - <span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>  http://127.0.0.1:8080/users/15/json/dontcare
+<span class="go">{&quot;user&quot;: {&quot;name&quot;: &quot;Fraichement récupéré dans la base de données&quot;, &quot;id&quot;:</span>
+<span class="go">&quot;15&quot;}}</span>
+</pre></div>
+</div>
+<ul class="simple">
+<li>MyRootFactory(request)[<strong>users</strong>][<strong>15</strong>] =&gt; My <em>User</em></li>
+<li>My <em>User</em> + &quot;<strong>json</strong>&quot; =&gt; json_view callable</li>
+</ul>
+
+</article>
+<article class="slide level-1" id="authentification-acls">
+<h1>Authentification/Acls</h1>
+<p>Deux modules :</p>
+<ul class="simple">
+<li>pyramid.authentication</li>
+<li>pyramid.authorization</li>
+</ul>
+
+</article>
+<article class="slide level-1" id="aclauthorizationpolicy">
+<h1>ACLAuthorizationPolicy</h1>
+<p>Combiné au traversal, permet une gestion dynamique des permissions</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">User</span><span class="p">(</span><span class="nb">dict</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__acl__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">acls</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="n">Allow</span><span class="p">,</span> <span class="s">&quot;group:admin&quot;</span><span class="p">,</span> <span class="n">ALL_PERMISSIONS</span><span class="p">,),</span>
+        <span class="p">]</span>
+        <span class="n">acls</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">Allow</span><span class="p">,</span> <span class="n">Authenticated</span><span class="p">,</span> <span class="p">(</span><span class="s">&#39;edit&#39;</span><span class="p">)))</span>
+
+        <span class="n">acls</span><span class="o">.</span><span class="n">append</span><span class="p">((</span><span class="n">Allow</span><span class="p">,</span> <span class="bp">self</span><span class="p">[</span><span class="s">&#39;name&#39;</span><span class="p">],</span> <span class="p">(</span><span class="s">&#39;view&#39;</span><span class="p">)))</span>
+        <span class="k">return</span> <span class="n">acls</span>
+</pre></div>
+</div>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">config</span><span class="o">.</span><span class="n">add_view</span><span class="p">(</span><span class="n">edit_user</span><span class="p">,</span> <span class="n">context</span><span class="o">=</span><span class="n">User</span><span class="p">,</span> <span class="n">name</span><span class="o">=</span><span class="s">&#39;json&#39;</span><span class="p">,</span>
+                <span class="n">renderer</span><span class="o">=</span><span class="s">&#39;json&#39;</span><span class="p">,</span> <span class="n">permission</span><span class="o">=</span><span class="s">&#39;edit&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+
+</article>
+<article class="slide level-1" id="autres">
+<h1>Autres</h1>
+<ul class="simple">
+<li>Traduire</li>
+<li>Journaliser</li>
+<li>Tester</li>
+</ul>
+
+</article>
+<article class="slide level-1" id="quelques-references">
+<h1>Quelques références</h1>
+<ul class="simple">
+<li>SQLAlchemy</li>
+<li>alembic</li>
+<li>cornice</li>
+<li>sqlautocode</li>
+<li>pyramid_deform (deform/colander)</li>
+<li>colanderalchemy</li>
+<li>pyramid_layout</li>
+</ul>
+<p>...</p>
+
+</article>
+<article class="admonition- slide level-1">
+<div class="figure">
+<img alt="_images/pyramid_top.png" class="fill" src="_images/pyramid_top.png" />
+</div>
+
+</article>
+<article class="slide level-1" id="merci">
+<h1>Merci</h1>
+<p>Le lien vers la conf :
+<a class="reference external" href="https://github.com/majerteam/pyconfr_pyramid">https://github.com/majerteam/pyconfr_pyramid</a></p>
+
+</article>
+
+
+</section>
+
+<section id="slide_notes">
+
+</section>
+
+  </body>
+</html>

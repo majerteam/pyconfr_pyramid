@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+
+
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Les routes &mdash; documentation Grimper en haut de la Pyramid 2014.10.20</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/styles.css" type="text/css" />
+    <link rel="stylesheet" href="_static/slides.css" type="text/css" />
+    
+    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    
+
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '2014.10.20',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="_static/translations.js"></script>
+    <script type="text/javascript" src="_static/common.js"></script>
+    <script type="text/javascript" src="_static/slides.js"></script>
+    <script type="text/javascript" src="_static/sync.js"></script>
+    <script type="text/javascript" src="_static/controller.js"></script>
+    <script type="text/javascript" src="_static/init.js"></script>
+    
+    <link rel="top" title="documentation Grimper en haut de la Pyramid 2014.10.20" href="index.html" /> 
+  </head>
+  <body>
+
+<section
+   id="slide_container"
+   class='slides layout-regular'>
+
+
+  <article class="slide level-1" id="les-routes">
+<h1>Les routes</h1>
+<p>La déclaration :</p>
+<ul class="simple">
+<li>Un nom</li>
+<li>Une expression régulière</li>
+<li>Des prédicats (pré-définis ou custom)</li>
+</ul>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">config</span><span class="o">.</span><span class="n">add_route</span><span class="p">(</span><span class="s">&#39;login&#39;</span><span class="p">,</span> <span class="s">&#39;/login/&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+
+</article>
+<article class="slide level-1" id="les-vues">
+<h1>Les vues</h1>
+<p>On les déclare :</p>
+<ul class="simple">
+<li>En les associants à une (ou plusieurs) route ou à un contexte (dans le cas du
+traversal)</li>
+<li>Selon certains critères (prédicats)</li>
+</ul>
+
+</article>
+<article class="slide level-1" id="id1">
+<h1>Les vues</h1>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">config</span><span class="o">.</span><span class="n">add_view</span><span class="p">(</span><span class="n">get_view</span><span class="p">,</span> <span class="n">route_name</span><span class="o">=</span><span class="s">&#39;login&#39;</span><span class="p">,</span> <span class="n">request_method</span><span class="o">=</span><span class="s">&#39;GET&#39;</span><span class="p">)</span>
+<span class="n">config</span><span class="o">.</span><span class="n">add_view</span><span class="p">(</span><span class="n">post_view</span><span class="p">,</span> <span class="n">route_name</span><span class="o">=</span><span class="s">&#39;login&#39;</span><span class="p">,</span> <span class="n">request_method</span><span class="o">=</span><span class="s">&#39;POST&#39;</span><span class="p">,</span>
+    <span class="n">xhr</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>La vue <strong>post_view</strong> est appellée :</p>
+<ul class="simple">
+<li>Si le chemin est /login/</li>
+<li>Si la requête est de type POST</li>
+<li>Si c'est un appel <em>ajax</em> ( header : X-Requested-With=XMLHttpRequest )</li>
+</ul>
+
+</article>
+<article class="slide level-1" id="un-framework-web">
+<h1>Un framework web</h1>
+<ul class="simple">
+<li>Issu de repoze.bfg et rappatriés dans le projet Pylons</li>
+<li>Sous licence BSD</li>
+<li>Minimaliste</li>
+<li>À la carte</li>
+<li>Entièrement testé</li>
+<li>Bien documenté</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Minimaliste : fournit ce que l'on demande à une application web : associer
+des urls à du code et renvoyer une réponse (ainsi que quelques éléments
+structurants comme nous allons le voir, sécurité, templating)
+À la carte : vous utilisez ce dont vous avez besoin (pas de gros bazooka
+pour écraser une mouche)
+Pythonique : explicite, une bonne réflexion sur la structure du code</p>
+</div>
+
+</article>
+<article class="slide level-1" id="quelques-outils-structurants">
+<h1>Quelques outils structurants</h1>
+<ul class="simple">
+<li>Des patrons (scaffolds) pour initialiser une nouvelle application</li>
+<li>Une documentation complète</li>
+<li>De nombreuses librairies tierces</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">une fois initialisé, c'est directement pip installable (en dev notamment)</p>
+</div>
+
+</article>
+<article class="slide level-1" id="une-premiere-application">
+<h1>Une première application</h1>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">wsgiref.simple_server</span> <span class="kn">import</span> <span class="n">make_server</span>
+<span class="kn">from</span> <span class="nn">pyramid.config</span> <span class="kn">import</span> <span class="n">Configurator</span>
+<span class="kn">from</span> <span class="nn">pyramid.response</span> <span class="kn">import</span> <span class="n">Response</span>
+
+<span class="k">def</span> <span class="nf">welcome_view</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="s">u&#39;Bienvenue </span><span class="si">%(name)s</span><span class="s">!&#39;</span> <span class="o">%</span> <span class="n">request</span><span class="o">.</span><span class="n">matchdict</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="n">__name__</span> <span class="o">==</span> <span class="s">&#39;__main__&#39;</span><span class="p">:</span>
+    <span class="c"># Configuration de notre vue</span>
+    <span class="n">config</span> <span class="o">=</span> <span class="n">Configurator</span><span class="p">()</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">add_route</span><span class="p">(</span><span class="s">&#39;welcome&#39;</span><span class="p">,</span> <span class="s">&#39;/welcome/{name}&#39;</span><span class="p">)</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">add_view</span><span class="p">(</span><span class="n">welcome_view</span><span class="p">,</span> <span class="n">route_name</span><span class="o">=</span><span class="s">&#39;welcome&#39;</span><span class="p">)</span>
+
+    <span class="n">app</span> <span class="o">=</span> <span class="n">config</span><span class="o">.</span><span class="n">make_wsgi_app</span><span class="p">()</span>
+
+    <span class="c"># Lancement du serveur wsgi (gunicorn, waitress ...)</span>
+    <span class="n">server</span> <span class="o">=</span> <span class="n">make_server</span><span class="p">(</span><span class="s">&#39;0.0.0.0&#39;</span><span class="p">,</span> <span class="mi">8080</span><span class="p">,</span> <span class="n">app</span><span class="p">)</span>
+    <span class="n">server</span><span class="o">.</span><span class="n">serve_forever</span><span class="p">()</span>
+</pre></div>
+</div>
+
+</article>
+<article class="slide level-1" id="id2">
+<h1>Une première application</h1>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> python welcome.py
+</pre></div>
+</div>
+<div class="highlight-console"><div class="highlight"><pre><span class="gp">$</span> wget -q -O - <span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>  http://127.0.0.1:8080/welcome/georges
+<span class="go">Bienvenue georges!</span>
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last"># On a un objet Configurator qui va subsister, on le retrouvera rattacher à
+chaque requête, c'est un des points importants de Pyramid (on peut le
+customiser fortement, comme le font beaucoup d'outil tierce)
+# On utilise une directive pour ajouter une route
+# Une autre pour la vue et hop, c'est parti
+on peut servir avec waitress, gunicorn, chaussette ...</p>
+</div>
+
+</article>
+<article class="slide level-2" id="url-dispatch-les-routes">
+<h2>URL Dispatch : les routes</h2>
+<p>Une directive de configuration pour les routes</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">config</span><span class="o">.</span><span class="n">add_route</span><span class="p">(</span><span class="s">&#39;login&#39;</span><span class="p">,</span> <span class="s">&#39;/login/&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+
+</article>
+<article class="slide level-2" id="url-dispatch-les-vues">
+<h2>URL Dispatch : les vues</h2>
+<p>Une directive de configuration pour les vues</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">config</span><span class="o">.</span><span class="n">add_view</span><span class="p">(</span><span class="n">get_view</span><span class="p">,</span> <span class="n">route_name</span><span class="o">=</span><span class="s">&#39;login&#39;</span><span class="p">,</span> <span class="n">request_method</span><span class="o">=</span><span class="s">&#39;GET&#39;</span><span class="p">)</span>
+<span class="n">config</span><span class="o">.</span><span class="n">add_view</span><span class="p">(</span><span class="n">post_view</span><span class="p">,</span> <span class="n">route_name</span><span class="o">=</span><span class="s">&#39;login&#39;</span><span class="p">,</span> <span class="n">request_method</span><span class="o">=</span><span class="s">&#39;POST&#39;</span><span class="p">,</span>
+    <span class="n">xhr</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>La vue <strong>post_view</strong> est appellée :</p>
+<ul class="simple">
+<li>Si le chemin est /login/</li>
+<li>Si la requête est de type POST</li>
+<li>Si c'est un appel <em>ajax</em> ( header : X-Requested-With=XMLHttpRequest )</li>
+</ul>
+
+</article>
+<article class="slide level-1" id="les-vues-la-configuration">
+<h1>Les vues : la configuration</h1>
+<p>Plusieurs manières de les configurer :</p>
+<p>Dans l'__init__.py de l'application</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">config</span><span class="o">.</span><span class="n">add_view</span><span class="p">(</span><span class="n">view_name</span><span class="p">,</span> <span class="n">route_name</span><span class="o">=</span><span class="s">&#39;home&#39;</span><span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Déporté dans le module</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="c"># dans le fichier myapp/__init__.py de l&#39;application :</span>
+<span class="n">config</span><span class="o">.</span><span class="n">include</span><span class="p">(</span><span class="s">&#39;myapp.home&#39;</span><span class="p">)</span>
+
+<span class="c"># dans le fichier myapp/home.py</span>
+<span class="k">def</span> <span class="nf">home_view</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+    <span class="o">...</span>
+
+<span class="k">def</span> <span class="nf">includeme</span><span class="p">(</span><span class="n">config</span><span class="p">):</span>
+    <span class="n">config</span><span class="o">.</span><span class="n">add_view</span><span class="p">(</span><span class="n">home_view</span><span class="p">,</span> <span class="n">route_name</span><span class="o">=</span><span class="s">&#39;home&#39;</span><span class="o">...</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Par le biais de décorateur</p>
+<div class="highlight-python"><div class="highlight"><pre># dans le fichier myapp/__init__.py de l&#39;application :
+config.scan()
+
+# dans le fichier home.py
+@view_config(route_name=&#39;home&#39;...)    def home_view(context, request):
+def home_view(context, request):
+    ...
+</pre></div>
+</div>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Les décorateurs n'ont pas d'impact</p>
+</div>
+
+</article>
+<article class="slide level-1" id="les-vues-la-declaration">
+<h1>Les vues : la déclaration</h1>
+<p>Comme fonction</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@view_config</span><span class="p">(</span><span class="n">route_name</span><span class="o">=</span><span class="s">&#39;home&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">home_view</span><span class="p">(</span><span class="n">context</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+    <span class="o">...</span>
+</pre></div>
+</div>
+<p>Comme classe</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="nd">@view_config</span><span class="p">(</span><span class="n">route_name</span><span class="o">=</span><span class="s">&#39;home&#39;</span><span class="p">)</span>
+<span class="k">class</span> <span class="nc">HomeView</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">request</span> <span class="o">=</span> <span class="n">request</span>
+        <span class="c"># init stuff</span>
+
+    <span class="k">def</span> <span class="nf">__call__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="s">&#39;Welcome&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Comme méthode</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">AClass</span><span class="p">(</span><span class="nb">object</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">context</span><span class="p">,</span> <span class="n">request</span><span class="p">):</span>
+        <span class="c"># init stuff</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">request</span> <span class="o">=</span> <span class="n">request</span>
+
+    <span class="nd">@view_config</span><span class="p">(</span><span class="n">route_name</span><span class="o">=</span><span class="s">&#39;home&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">welcome</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="s">&#39;Welcome&#39;</span><span class="p">)</span>
+
+    <span class="nd">@view_config</span><span class="p">(</span><span class="n">route_name</span><span class="o">=</span><span class="s">&#39;exit&#39;</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">goodbye</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">Response</span><span class="p">(</span><span class="s">&#39;Goodbye&#39;</span><span class="p">)</span>
+</pre></div>
+</div>
+
+</article>
+<article class="slide level-1" id="pyramid-fournit-le-necessaire-pour">
+<h1>Pyramid fournit le nécessaire pour</h1>
+<ul class="simple">
+<li>Gérer la configuration</li>
+<li>Associer des urls à du code</li>
+<li>Rendre des données (template)</li>
+<li>Sécuriser une application (Authentification et Autorisation)</li>
+<li>Servir des ressources statiques</li>
+<li>Gérer des sessions (de manière minimaliste)</li>
+<li>Journaliser</li>
+<li>Tester</li>
+<li>Construire des extensions</li>
+</ul>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p class="last">Liste non exhaustive
+La plupart des objets fournis par Pyramid sont remplaçables, ils
+implémentent une interface documentées.</p>
+</div>
+
+</article>
+<article class="slide level-1" id="mais-des-librairies-tierces-existent">
+<h1>Mais des librairies tierces existent</h1>
+<ul class="simple">
+<li>SQLAlchemy (et pyramid_tm)</li>
+<li>deform (et pyramid_deform)</li>
+<li>pyramid_simpleform</li>
+<li>dogpile.cache</li>
+<li>pyramid_redis_session</li>
+</ul>
+<p>(Plus de 200 paquets sur pypi)</p>
+
+</article>
+<article class="slide level-1" id="renderers">
+<h1>Renderers</h1>
+<p>La vue renvoie un dictionnaire qui va servir de contexte à notre template.
+La vue est donc facilement testable.</p>
+
+</article>
+<article class="slide level-1" id="ce-que-l-on-trouve-dans-pyramid">
+<h1>Ce que l'on trouve dans Pyramid</h1>
+
+</article>
+<article class="slide level-1" id="principes">
+<h1>Principes</h1>
+<p>Des vues : reçoivent une requête et renvoie une réponse.
+Un objet global de configuration</p>
+
+</article>
+<article class="slide level-1" id="philosophie">
+<h1>Philosophie</h1>
+<p>Des briques essentielles
+* Configuration
+* Vues
+*
+* Session
+* Authentification
+* Autorisation</p>
+
+</article>
+
+
+</section>
+
+<section id="slide_notes">
+
+</section>
+
+  </body>
+</html>

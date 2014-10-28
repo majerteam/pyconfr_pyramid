@@ -1,0 +1,287 @@
+
+
+Les routes
+===========
+
+La déclaration :
+
+* Un nom
+* Une expression régulière
+* Des prédicats (pré-définis ou custom)
+
+.. code-block:: python
+
+    config.add_route('login', '/login/')
+
+Les vues
+=========
+
+
+On les déclare :
+
+* En les associants à une (ou plusieurs) route ou à un contexte (dans le cas du
+  traversal)
+* Selon certains critères (prédicats)
+
+.. nextslide::
+
+.. code-block:: python
+
+    config.add_view(get_view, route_name='login', request_method='GET')
+    config.add_view(post_view, route_name='login', request_method='POST',
+        xhr=True)
+
+La vue **post_view** est appellée :
+
+* Si le chemin est /login/
+* Si la requête est de type POST
+* Si c'est un appel *ajax* ( header : X-Requested-With=XMLHttpRequest )
+
+Un framework web
+=================
+
+* Issu de repoze.bfg et rappatriés dans le projet Pylons
+* Sous licence BSD
+* Minimaliste
+* À la carte
+* Entièrement testé
+* Bien documenté
+
+.. note::
+
+    Minimaliste : fournit ce que l'on demande à une application web : associer
+    des urls à du code et renvoyer une réponse (ainsi que quelques éléments
+    structurants comme nous allons le voir, sécurité, templating)
+    À la carte : vous utilisez ce dont vous avez besoin (pas de gros bazooka
+    pour écraser une mouche)
+    Pythonique : explicite, une bonne réflexion sur la structure du code
+
+Quelques outils structurants
+=============================
+
+* Des patrons (scaffolds) pour initialiser une nouvelle application
+* Une documentation complète
+* De nombreuses librairies tierces
+
+.. note:: une fois initialisé, c'est directement pip installable (en dev notamment)
+
+
+Une première application
+========================
+
+.. code-block:: python
+
+    from wsgiref.simple_server import make_server
+    from pyramid.config import Configurator
+    from pyramid.response import Response
+
+    def welcome_view(request):
+        return Response(u'Bienvenue %(name)s!' % request.matchdict)
+
+    if __name__ == '__main__':
+        # Configuration de notre vue
+        config = Configurator()
+        config.add_route('welcome', '/welcome/{name}')
+        config.add_view(welcome_view, route_name='welcome')
+
+        app = config.make_wsgi_app()
+
+        # Lancement du serveur wsgi (gunicorn, waitress ...)
+        server = make_server('0.0.0.0', 8080, app)
+        server.serve_forever()
+
+.. nextslide::
+
+.. code-block:: console
+
+    $ python welcome.py
+
+.. code-block:: console
+
+    $ wget -q -O - "$@"  http://127.0.0.1:8080/welcome/georges
+    Bienvenue georges!
+
+.. note::
+
+    # On a un objet Configurator qui va subsister, on le retrouvera rattacher à
+    chaque requête, c'est un des points importants de Pyramid (on peut le
+    customiser fortement, comme le font beaucoup d'outil tierce)
+    # On utilise une directive pour ajouter une route
+    # Une autre pour la vue et hop, c'est parti
+    on peut servir avec waitress, gunicorn, chaussette ...
+
+URL Dispatch : les routes
+..........................
+
+Une directive de configuration pour les routes
+
+.. code-block:: python
+
+    config.add_route('login', '/login/')
+
+.. nextslide::
+
+URL Dispatch : les vues
+........................
+
+Une directive de configuration pour les vues
+
+.. code-block:: python
+
+    config.add_view(get_view, route_name='login', request_method='GET')
+    config.add_view(post_view, route_name='login', request_method='POST',
+        xhr=True)
+
+La vue **post_view** est appellée :
+
+* Si le chemin est /login/
+* Si la requête est de type POST
+* Si c'est un appel *ajax* ( header : X-Requested-With=XMLHttpRequest )
+
+
+Les vues : la configuration
+============================
+
+Plusieurs manières de les configurer :
+
+Dans l'__init__.py de l'application
+
+.. code-block:: python
+
+    config.add_view(view_name, route_name='home'...)
+
+Déporté dans le module
+
+.. code-block:: python
+
+    # dans le fichier myapp/__init__.py de l'application :
+    config.include('myapp.home')
+
+    # dans le fichier myapp/home.py
+    def home_view(context, request):
+        ...
+
+    def includeme(config):
+        config.add_view(home_view, route_name='home'...)
+
+Par le biais de décorateur
+
+.. code-block:: python
+
+    # dans le fichier myapp/__init__.py de l'application :
+    config.scan()
+
+    # dans le fichier home.py
+    @view_config(route_name='home'...)    def home_view(context, request):
+    def home_view(context, request):
+        ...
+
+.. note::
+
+    Les décorateurs n'ont pas d'impact
+
+Les vues : la déclaration
+============================
+
+Comme fonction
+
+.. code-block:: python
+
+    @view_config(route_name='home')
+    def home_view(context, request):
+        ...
+
+Comme classe
+
+.. code-block:: python
+
+    @view_config(route_name='home')
+    class HomeView(object):
+        def __init__(self, context, request):
+            self.request = request
+            # init stuff
+
+        def __call__(self):
+            return Response('Welcome')
+
+
+Comme méthode
+
+.. code-block:: python
+
+    class AClass(object):
+        def __init__(self, context, request):
+            # init stuff
+            self.request = request
+
+        @view_config(route_name='home')
+        def welcome(self):
+            return Response('Welcome')
+
+        @view_config(route_name='exit')
+        def goodbye(self):
+            return Response('Goodbye')
+
+
+Pyramid fournit le nécessaire pour
+===================================
+
+* Gérer la configuration
+* Associer des urls à du code
+* Rendre des données (template)
+* Sécuriser une application (Authentification et Autorisation)
+* Servir des ressources statiques
+* Gérer des sessions (de manière minimaliste)
+* Journaliser
+* Tester
+* Construire des extensions
+
+.. note::
+
+    Liste non exhaustive
+    La plupart des objets fournis par Pyramid sont remplaçables, ils
+    implémentent une interface documentées.
+
+
+Mais des librairies tierces existent
+====================================
+
+* SQLAlchemy (et pyramid_tm)
+* deform (et pyramid_deform)
+* pyramid_simpleform
+* dogpile.cache
+* pyramid_redis_session
+
+(Plus de 200 paquets sur pypi)
+
+
+
+Renderers
+==========
+
+La vue renvoie un dictionnaire qui va servir de contexte à notre template.
+La vue est donc facilement testable.
+
+
+Ce que l'on trouve dans Pyramid
+===============================
+
+
+
+Principes
+=========
+
+Des vues : reçoivent une requête et renvoie une réponse.
+Un objet global de configuration
+
+Philosophie
+============
+
+Des briques essentielles
+* Configuration
+* Vues
+*
+* Session
+* Authentification
+* Autorisation
+
